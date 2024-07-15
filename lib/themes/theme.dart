@@ -39,11 +39,8 @@ class MaterialTheme {
       onError: Color(0xffffffff),
       errorContainer: Color(0xffae5e55),
       onErrorContainer: Color(0xffffffff),
-      background: Color(0xfffff8f3),
-      onBackground: Color(0xff201b14),
       surface: Color(0xfffff8f2),
       onSurface: Color(0xff1e1b18),
-      surfaceVariant: Color(0xffebe1d6),
       onSurfaceVariant: Color(0xff4c463e),
       outline: Color(0xff7d766d),
       outlineVariant: Color(0xffcfc5bb),
@@ -98,11 +95,8 @@ class MaterialTheme {
       onError: Color(0xffffffff),
       errorContainer: Color(0xffae5e55),
       onErrorContainer: Color(0xffffffff),
-      background: Color(0xfffff8f3),
-      onBackground: Color(0xff201b14),
       surface: Color(0xfffff8f2),
       onSurface: Color(0xff1e1b18),
-      surfaceVariant: Color(0xffebe1d6),
       onSurfaceVariant: Color(0xff48423a),
       outline: Color(0xff655e56),
       outlineVariant: Color(0xff817971),
@@ -157,11 +151,8 @@ class MaterialTheme {
       onError: Color(0xffffffff),
       errorContainer: Color(0xff712e28),
       onErrorContainer: Color(0xffffffff),
-      background: Color(0xfffff8f3),
-      onBackground: Color(0xff201b14),
       surface: Color(0xfffff8f2),
       onSurface: Color(0xff000000),
-      surfaceVariant: Color(0xffebe1d6),
       onSurfaceVariant: Color(0xff28231d),
       outline: Color(0xff48423a),
       outlineVariant: Color(0xff48423a),
@@ -216,11 +207,8 @@ class MaterialTheme {
       onError: Color(0xff591c17),
       errorContainer: Color(0xffae5e55),
       onErrorContainer: Color(0xffffffff),
-      background: Color(0xff17130c),
-      onBackground: Color(0xffece1d5),
       surface: Color(0xff151310),
       onSurface: Color(0xffe8e1db),
-      surfaceVariant: Color(0xff4c463e),
       onSurfaceVariant: Color(0xffcfc5bb),
       outline: Color(0xff988f86),
       outlineVariant: Color(0xff4c463e),
@@ -275,11 +263,8 @@ class MaterialTheme {
       onError: Color(0xff350303),
       errorContainer: Color(0xffd07970),
       onErrorContainer: Color(0xff000000),
-      background: Color(0xff17130c),
-      onBackground: Color(0xffece1d5),
       surface: Color(0xff151310),
       onSurface: Color(0xfffffaf7),
-      surfaceVariant: Color(0xff4c463e),
       onSurfaceVariant: Color(0xffd3c9bf),
       outline: Color(0xffaaa198),
       outlineVariant: Color(0xff8a8279),
@@ -334,11 +319,8 @@ class MaterialTheme {
       onError: Color(0xff000000),
       errorContainer: Color(0xffffbab2),
       onErrorContainer: Color(0xff000000),
-      background: Color(0xff17130c),
-      onBackground: Color(0xffece1d5),
       surface: Color(0xff151310),
       onSurface: Color(0xffffffff),
-      surfaceVariant: Color(0xff4c463e),
       onSurfaceVariant: Color(0xfffffaf7),
       outline: Color(0xffd3c9bf),
       outlineVariant: Color(0xffd3c9bf),
@@ -381,7 +363,7 @@ class MaterialTheme {
           bodyColor: colorScheme.onSurface,
           displayColor: colorScheme.onSurface,
         ),
-        scaffoldBackgroundColor: colorScheme.background,
+        scaffoldBackgroundColor: colorScheme.surface,
         canvasColor: colorScheme.surface,
       );
 
@@ -538,11 +520,8 @@ class MaterialScheme {
     required this.onError,
     required this.errorContainer,
     required this.onErrorContainer,
-    required this.background,
-    required this.onBackground,
     required this.surface,
     required this.onSurface,
-    required this.surfaceVariant,
     required this.onSurfaceVariant,
     required this.outline,
     required this.outlineVariant,
@@ -590,11 +569,8 @@ class MaterialScheme {
   final Color onError;
   final Color errorContainer;
   final Color onErrorContainer;
-  final Color background;
-  final Color onBackground;
   final Color surface;
   final Color onSurface;
-  final Color surfaceVariant;
   final Color onSurfaceVariant;
   final Color outline;
   final Color outlineVariant;
@@ -644,11 +620,8 @@ extension MaterialSchemeUtils on MaterialScheme {
       onError: onError,
       errorContainer: errorContainer,
       onErrorContainer: onErrorContainer,
-      background: background,
-      onBackground: onBackground,
       surface: surface,
       onSurface: onSurface,
-      surfaceVariant: surfaceVariant,
       onSurfaceVariant: onSurfaceVariant,
       outline: outline,
       outlineVariant: outlineVariant,
