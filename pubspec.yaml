@@ -14,12 +14,12 @@
 
 name: character_creator
 description: "A role-playing game NPC creator."
-publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.0+1
+version: 1.0.0+2
 
 environment:
-  sdk: '>=3.3.3 <4.0.0'
+  sdk: ">=3.3.3 <4.0.0"
 
 dependencies:
   flutter:
@@ -41,4 +41,4 @@ flutter:
   uses-material-design: true
 
   assets:
-    - 'assets/images/avatar.png'
+    - "assets/images/avatar.png"

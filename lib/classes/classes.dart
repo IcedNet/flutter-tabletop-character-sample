@@ -1,4 +1,9 @@
+import 'dart:convert';
+
+import 'package:character_creator/utils/util.dart';
+import 'package:flutter/material.dart';
 import 'package:google_generative_ai/google_generative_ai.dart';
+import 'package:url_launcher/link.dart';
 
 class Appearance {
   final String age;
@@ -142,3 +147,117 @@ const outputSchema = '''
   "roleInGame": String
 }
 ''';
+
+class ApiKeyWidget extends StatelessWidget {
+  ApiKeyWidget({required this.onSubmitted, super.key});
+
+  final ValueChanged onSubmitted;
+  final TextEditingController _textController = TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Text(
+                'To use the Gemini API, you\'ll need an API key. '
+                'If you don\'t already have one, '
+                'create a key in Google AI Studio.',
+              ),
+            ),
+            const SizedBox(height: 8),
+            Link(
+              uri: Uri.https('aistudio.google.com', '/app/apikey'),
+              target: LinkTarget.blank,
+              builder: (context, followLink) => TextButton(
+                onPressed: followLink,
+                child: const Text('Get an API Key'),
+              ),
+            ),
+            const SizedBox(height: 8),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 32),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: TextField(
+                      decoration:
+                          textFieldDecoration(context, 'Enter your API key'),
+                      controller: _textController,
+                      onSubmitted: (value) {
+                        onSubmitted(value);
+                      },
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  TextButton(
+                    onPressed: () {
+                      onSubmitted(_textController.value.text);
+                    },
+                    child: const Text('Submit'),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class CharacterService {
+  final String apiKey;
+
+  late final GenerativeModel model;
+
+  final generationConfig = GenerationConfig(
+    temperature: 0.4,
+    topK: 32,
+    topP: 1,
+    maxOutputTokens: 4096,
+  );
+
+  final safetySettings = [
+    SafetySetting(HarmCategory.harassment, HarmBlockThreshold.medium),
+    SafetySetting(HarmCategory.hateSpeech, HarmBlockThreshold.medium),
+    SafetySetting(HarmCategory.sexuallyExplicit, HarmBlockThreshold.medium),
+    SafetySetting(HarmCategory.dangerousContent, HarmBlockThreshold.medium),
+  ];
+
+  CharacterService(this.apiKey) {
+    model = GenerativeModel(model: 'gemini-pro', apiKey: apiKey);
+  }
+
+  Future<Character> generateCharacter(String description, String role,
+      String personality, String background) async {
+    final prompt = createPrompt(description, role, personality, background);
+
+    int count = 0;
+
+    while (count < 3) {
+      try {
+        final response = await model.generateContent(
+          [prompt],
+          safetySettings: safetySettings,
+          generationConfig: generationConfig,
+        );
+
+        final json = jsonDecode(response.text!);
+        final character = Character.fromJson(json);
+        return character;
+      } catch (ex) {
+        debugPrint(ex.toString());
+      }
+
+      count++;
+    }
+
+    throw 'Could not parse response after three tries.';
+  }
+}
