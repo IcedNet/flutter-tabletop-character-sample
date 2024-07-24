@@ -16,7 +16,7 @@ name: character_creator
 description: "A role-playing game NPC creator."
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
-version: 1.0.0+4
+version: 1.0.0+5
 
 environment:
   sdk: ">=3.3.3 <4.0.0"
