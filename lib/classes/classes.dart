@@ -213,14 +213,15 @@ class ApiKeyWidget extends StatelessWidget {
 
 class CharacterService {
   final String apiKey;
+  final modelType = 'gemini-pro';
 
   late final GenerativeModel model;
 
   final generationConfig = GenerationConfig(
-    temperature: 0.4,
-    topK: 32,
-    topP: 1,
-    maxOutputTokens: 4096,
+    temperature: 3.4,
+    // topK: 32,
+    // topP: 1,
+    maxOutputTokens: 16384,
   );
 
   final safetySettings = [
@@ -231,7 +232,7 @@ class CharacterService {
   ];
 
   CharacterService(this.apiKey) {
-    model = GenerativeModel(model: 'gemini-pro', apiKey: apiKey);
+    model = GenerativeModel(model: modelType, apiKey: apiKey);
   }
 
   Future<Character> generateCharacter(String description, String role,

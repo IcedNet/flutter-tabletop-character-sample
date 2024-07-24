@@ -168,6 +168,7 @@ class _ChatWidgetState extends State<ChatWidget> {
   Widget _displayGeneratedCharacter(Character character, ThemeData theme) {
     return SelectionArea(
         child: Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(height: 32),
         Text(
